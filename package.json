@@ -1,0 +1,31 @@
+{
+  "name": "url-checker",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.16.2",
+    "curl": "^0.1.4",
+    "html": "^1.0.0",
+    "html-beautify": "^1.0.4",
+    "html-readability": "^0.1.4",
+    "html-tidy": "0.0.1",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.2",
+    "react-dom": "^15.6.1",
+    "react-highlight-words": "^0.8.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "0.9.5",
+    "redux": "^3.7.2",
+    "redux-persist": "^4.9.1",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
