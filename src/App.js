@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 //import { Provider } from 'react-redux';
 //import store from './store/configureStore';
-
-import UrlChecker from './UrlChecker'
+import Highlight from './Highlight';
+import UrlChecker from './UrlChecker';
 import './App.css';
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
       console.log(window)
     return (
       <div className="App">
-       <UrlChecker/>
+        {window.location.pathname === "/highlight" ? <Highlight/> : <UrlChecker/>}
       </div>
     );
   }

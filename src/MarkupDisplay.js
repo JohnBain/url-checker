@@ -43,37 +43,41 @@ const searchIndex = function (str, searchValue) {
 class MarkupDisplay extends Component {
     constructor(props){
         super(props);
-        this.state = {highlightedElem: ''}
+        this.state = {originalMarkup: ''}
     }
     
     handleClick(syntheticEvent){
-        const markup = document.getElementById('markupHolder').innerText; //text 
+        const markup = this.props.rawMarkup;
         const getSelectionPosition = function () {
             var selection = window.getSelection(); //returns index of the clicked character in a text elem
             return selection.focusOffset;
         }
         var selectedIndex = getSelectionPosition();
         var selectedElem = getElemName(markup, selectedIndex)
-        alert(selectedElem);
         
         const markupHolder = document.querySelector('#markupHolder span'); 
-        const elemIndices = searchIndex(markupHolder.innerHTML, selectedElem); //get the opening indexes to highlight
-        const endIndices = elemIndices.map((e)=>e+selectedElem.length); //closing indexes
-
+        const elemIndices = searchIndex(markupHolder.innerHTML, selectedElem); //get the opening indices of each element's name
+        const endIndices = elemIndices.map((e)=>e+selectedElem.length); //closing indices
+        var beginningHTML = markupHolder.innerHTML.substr(0, elemIndices[0]);
+        var fullMarkupArray = markupHolder.innerHTML.split('');
+        alert(selectedElem);
+//        for (var i = 0; i <= fullMarkupArray.length;i++){
+//	       if (elemIndices.indexOf(i) !== -1){
+//		      beginningHTML += '<span style="color: blue">' + fullMarkupArray[i];
+//	       }
+//	       else if (endIndices.indexOf(i) !== -1){
+//		      beginningHTML += '</span>' + fullMarkupArray[i];
+//	       }
+//           else {
+//            beginningHTML += fullMarkupArray[i];
+//           }
+//        }
+//
+//        markupHolder.innerHTML = beginningHTML;
         /*
-        var beginningString = markup.substr(0, elemIndices[0]);
-        for (var i in elemIndices){
-            beginningString += "<span style='color: blue'>" + markupHolder.innerHTML.substr(elemIndices[i], endIndices[i]) + "</span>" + markupHolder.innerHTML.substr(endIndices[i], markupHolder.innerHTML.length) 
-        }*/
+        The commented code highlights each element as requested, but in a buggy way. A smarter way to achieve this would have been to render each distinct DOM element in the returned markup as a React component. The DOM element wouldn't effect display, but it would make React aware of each discrete DOM element's name. For the simplest implementation selecting just the name and not worrying about attrs or closing components, we could use a RegEx (/<([^\/][\w|\s]*)>/g is close) to wrap any full words after "<" characters in custom JSX components. 
         
-        /*I was unable to complete this fully within 3-4 hours, but my plan was to iterate 
-        through the innerHTML of this elem, stopping at each index beginning the chosen DOM element's name,
-        and wrap each DOM name in <span style='color: blue'>.
-
-        A smarter way to achieve this would have been to render each distinct DOM element in the returned markup as a React component. The DOM element wouldn't effect display, but it would make React aware of each
-        discrete DOM element's name. For the simplest implementation selecting just the name and not worrying about attrs or closing components, we could use a RegEx to wrap any full words after "<" characters in custom JSX components.
-        
-        So we would end up with JSX like <<DOMElemName style={{this.state.clickedElem === 'iframe' && color: blue}}>iframe</DOMElemName> src='...'><<DOMElemName style={{this.state.clickedElem === 'span' && color: blue}}>span></span>. Then I would pass "clickedElem" a string to trivially light up each DOMElem's text when selected. 
+        See Highlight.js for a partial implementation. This is the idiomatic React way to solve the problem.
         */
     }
     
