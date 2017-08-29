@@ -7,10 +7,10 @@ import './App.css';
 
 class App extends Component {
   render() {
-      console.log(window)
+      console.log(window.location.pathname)
     return (
       <div className="App">
-        {window.location.pathname === "/highlight" ? <Highlight/> : <UrlChecker/>}
+        {window.location.pathname === "/#" ? <Highlight/> : <UrlChecker/>}
       </div>
     );
   }
