@@ -1,3 +1,3 @@
-Unfinished React implementation of the request -- check MarkupDisplay.js for discussion, navigate to "/higlight" for prototype of a working version.
+Unfinished React implementation of the request -- check MarkupDisplay.js for discussion, click the bottom right button labelled "urlchecker" for prototype of a working version.
 
-The Node server is required due to CORS restrictions. 
+The Node server (Access API by curling, for example, https://url-checker-server.herokuapp.com/track?url=google.com.  Code in /server) is required due to CORS restrictions. 
