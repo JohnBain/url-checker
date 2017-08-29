@@ -58,8 +58,8 @@ class MarkupDisplay extends Component {
         const markupHolder = document.querySelector('#markupHolder span'); 
         const elemIndices = searchIndex(markupHolder.innerHTML, selectedElem); //get the opening indices of each element's name
         const endIndices = elemIndices.map((e)=>e+selectedElem.length); //closing indices
-        var beginningHTML = markupHolder.innerHTML.substr(0, elemIndices[0]);
-        var fullMarkupArray = markupHolder.innerHTML.split('');
+        const beginningHTML = markupHolder.innerHTML.substr(0, elemIndices[0]);
+        const fullMarkupArray = markupHolder.innerHTML.split('');
         alert(selectedElem);
 //        for (var i = 0; i <= fullMarkupArray.length;i++){
 //	       if (elemIndices.indexOf(i) !== -1){
